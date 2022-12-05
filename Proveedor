@@ -1,0 +1,36 @@
+package Comunidad;
+public class Proveedor extends Perfil{
+
+
+public Proveedor(String codigo, String nombre, String direccion, String telefono){
+
+  super(codigo, nombre, direccion, telefono);
+  }
+
+
+
+
+
+
+
+
+
+//Getters
+  public String getCodigo(){
+    return codigo;
+  }
+
+  public String getNombre(){
+    return nombre;
+  }
+
+  public String getDireccion(){
+    return direccion;
+  }
+
+  public String getTelefono(){
+    return telefono;
+  }  
+  
+}
+
