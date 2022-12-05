@@ -1,0 +1,7 @@
+package Comunidad;
+
+public enum TipoAuto{
+
+AUTOMOVIL, MOTOCICLETA, BUS;
+  
+}
