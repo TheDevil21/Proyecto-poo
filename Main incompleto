@@ -1,0 +1,119 @@
+import Administracion.*;
+import Comunidad.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+import Excepciones.*;
+
+class Main {
+  public ArrayList<Cliente> listaClientes;
+  
+  public ArrayList<Proveedor> listaProveedores;
+  public ArrayList<Servicio> listaServicios;
+ 
+  public ArrayList<String> listaEmailsEnviados;
+  
+  public static ArrayList<Usuario> listaUsuarios=new ArrayList<>();
+  public static ArrayList<Tecnico> listaTecnicos =new ArrayList<>();
+  public static ArrayList<Cobranza> listaCobranza =new ArrayList<>();
+  
+
+  public static void main(String[] args){
+
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Para iniciar sesion ingrese su usuario:");
+    String usuario = sc.nextLine();
+    System.out.println("Ingrese su contraseña:");
+    String clave = sc.nextLine();
+
+    
+
+      listaUsuarios.add(new Admin("admin1","12345678"));
+
+    listaTecnicos.add(new Tecnico("alopez","al123456"));
+
+    listaCobranza.add(new Cobranza("mccastro","mc123456"));
+    
+    try{
+
+      if(!(esteUsuarioSeEncuentraEnLaLista(usuario, clave, listaUsuarios, listaTecnicos, listaCobranza))){
+        
+        throw new UsuarioOClaveNoCoincide("Usuario o clave no coincide");
+    }else{
+
+        inicializarSistema();
+    }
+       
+      
+          
+    }catch(UsuarioOClaveNoCoincide e){
+      System.out.println(e.getMessage());
+
+  
+      
+      }
+    
+
+       
+
+      
+    }
+
+
+    
+
+  public static void inicializarSistema(){
+    
+    
+    
+listaUsuarios.add(new Admin("admin1","12345678"));
+
+    listaTecnicos.add(new Tecnico("alopez","al123456"));
+
+    listaCobranza.add(new Cobranza("mccastro","mc123456"));
+
+for(int i=0; i<listaUsuarios.size(); i++){
+
+      if (listaUsuarios.get(i) instanceof Admin){
+        Admin adm = (Admin) listaUsuarios.get(i);
+        adm.menu_admin();
+      }
+    }
+
+      for(int i=0; i<listaTecnicos.size(); i++){
+        if(listaTecnicos.get(i) instanceof Tecnico)
+        listaTecnicos.get(i).menu_tecnico();
+      
+          }
+
+      for(int i=0; i<listaCobranza.size(); i++){
+        if(listaCobranza.get(i) instanceof Cobranza)
+        listaCobranza.get(i).menu();
+      }
+    
+  }
+  
+  public static boolean esteUsuarioSeEncuentraEnLaLista(String usuario, String clave,ArrayList<Usuario> listaUsuarios, ArrayList<Tecnico> listaTecnicos, ArrayList<Cobranza> listaCobranza){
+    for(Usuario usuarioAux:listaUsuarios){
+      if(usuarioAux.getNombre().equals(usuario) && usuarioAux.getContra().equals(clave)){
+        return true;
+      }
+    }
+
+    for(Tecnico usuarioAux:listaTecnicos){
+      if(usuarioAux.getNom_usuario().equals(usuario) && usuarioAux.getContra().equals(clave)){
+        return true;
+      }
+    }
+
+    for(Cobranza usuarioAux:listaCobranza){
+      if(usuarioAux.getNom_usuario().equals(usuario) && usuarioAux.getContra().equals(clave)){
+        return true;
+      }
+    }
+
+
+    
+    return false;
+  }
+  
+}
